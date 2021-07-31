@@ -1,0 +1,38 @@
+FILE config_parser.py
+    - class ConfigEntity - class to store configuration file in an object variable
+    - def get_path() - function to retrieve PATH variable form config file
+    - def get_model() - function to retrieve MODEL variable as parameters of the model
+    - def get_hyperparameters() - function to retrieve HYPERPARAMETERS from config for neural network configuration
+    - def get_embedding() - function to retrieve EMBEDDING from config for embedding parameters
+    - def get_nn_structure() - function to retrieve NN_STRUCTURE from config for neural network structure configuration
+    - def get_evaluation() - function to retrieve EVALUATION from config for file paths for testing and evaluation results
+
+FILE neural_network.py
+    - class BOWFFNN - class responsible for creating nn model for bow classification
+    - class LSTMFFNN - class responsible for creating nn model for bilstm classification
+    - class QuestionsDataset - class to create custom Dataset to make use of torch DataLoader
+    - def train() - training function, which accepts the converted to vectors labels and questions, as well as other
+        parameters to set up specific model of NN and run training mode on model for specific number of epochs. On the
+        output it will return evaluation results file.
+    - def test() - testing function, which takes ready model and passes testing data. On the output it will return
+        testing results file
+    - def metrics() - function to create loss and accuracy metrics for validation purposes
+
+FILE question_classifier.py
+    - def train() - function which is called when script is set to train model. Most of data preprocessing as well as
+        nn.train call happening there
+    - def test() - function which is called when script is set to test model.
+
+FILE data_preprocesing.py
+    - def data_load() - function which reads the file to create input and labels object. All the punctuation and useless
+        characters removed at this stage.
+    - def create_dictionary() - creates dictionary of unique words as well as padding and UNK.
+    - def retrieve_unique_classes() - create list of all classes in data
+    - def get_contractions() - load contraction into variable
+    - def replace_contractions() - replace contractions from text provided
+    - def tokenize() - simplistic tokenization function
+    - def word_to_idx_mapping() - create mapping from words to index
+    - def labels_to_idx_mapping() - create mapping from labels(classes) to index
+    - def encode_data() - encode text by use of mapping from word to index
+    - def encode_labels() - encode labels by use of mapping from label to index
+    - def retrieve_embeddings() - retrieve pretrained embeddings from the file provided
